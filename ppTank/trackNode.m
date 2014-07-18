@@ -8,7 +8,7 @@
 
 #import "trackNode.h"
 
-//#define         TRACK_SKIN
+#define         TRACK_SKIN
 
 @implementation trackNode
 {
