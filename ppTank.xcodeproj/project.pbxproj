@@ -173,6 +173,7 @@
 		C989E346196E327A00EF7502 /* 履带.png in Resources */ = {isa = PBXBuildFile; fileRef = C989E33E196E327A00EF7502 /* 履带.png */; };
 		C9978CD1196FC39F0063FD68 /* 背景-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C9978CCF196FC39F0063FD68 /* 背景-1.png */; };
 		C9978CD2196FC39F0063FD68 /* 背景第二层1.png in Resources */ = {isa = PBXBuildFile; fileRef = C9978CD0196FC39F0063FD68 /* 背景第二层1.png */; };
+		C9BB3A841978C60800309424 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = C9BB3A831978C60800309424 /* readme.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -514,6 +515,7 @@
 		C989E33E196E327A00EF7502 /* 履带.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "履带.png"; sourceTree = "<group>"; };
 		C9978CCF196FC39F0063FD68 /* 背景-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景-1.png"; sourceTree = "<group>"; };
 		C9978CD0196FC39F0063FD68 /* 背景第二层1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "背景第二层1.png"; sourceTree = "<group>"; };
+		C9BB3A831978C60800309424 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -566,6 +568,7 @@
 		C989E149196E22FF00EF7502 /* ppTank */ = {
 			isa = PBXGroup;
 			children = (
+				C9BB3A831978C60800309424 /* readme.txt */,
 				C925C67C19779AFE00537F50 /* HelloWorldLayer.h */,
 				C925C67D19779AFE00537F50 /* HelloWorldLayer.m */,
 				C989E336196E327A00EF7502 /* images */,
@@ -1139,6 +1142,7 @@
 			files = (
 				C989E346196E327A00EF7502 /* 履带.png in Resources */,
 				C925C68B1977C85200537F50 /* gunbarrel.png in Resources */,
+				C9BB3A841978C60800309424 /* readme.txt in Resources */,
 				C925C6861977AADB00537F50 /* tankbody.png in Resources */,
 				C989E14E196E22FF00EF7502 /* InfoPlist.strings in Resources */,
 				C989E340196E327A00EF7502 /* block2.png in Resources */,
