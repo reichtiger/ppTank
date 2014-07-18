@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>A8FE533C-5DEF-4466-A0F4-9464FF52224B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ppTank</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>47EEED46-5B80-4FCE-B3B4-44605931C922</key>
+		<string>ssh://popoping/repo/ppTank</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ppTank.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>47EEED46-5B80-4FCE-B3B4-44605931C922</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://popoping/repo/ppTank</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>47EEED46-5B80-4FCE-B3B4-44605931C922</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>47EEED46-5B80-4FCE-B3B4-44605931C922</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ppTank</string>
+		</dict>
+	</array>
+</dict>
+</plist>
