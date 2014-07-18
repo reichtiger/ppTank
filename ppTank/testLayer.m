@@ -146,11 +146,12 @@
         CCLOG(@"dist1=%2f,  dist2= %2f", dist1, dist2);
         
         cpSpaceAddConstraint(_space, cpSlideJointNew(body, segment1, cpv(0, 0), cpv(-15, 5), dist1-5, dist1));
+        cpSpaceAddConstraint(_space, cpSlideJointNew(body, segment1, cpv(0, 0), cpv(15, 5), dist2-5, dist2));
+        
         if (i > 0) {
             cpSpaceAddConstraint(_space, cpPivotJointNew2(preSeg, segment1, cpv(15, 5), cpv(-15, 5)));
             
         }
-        cpSpaceAddConstraint(_space, cpSlideJointNew(body, segment1, cpv(0, 0), cpv(15, 5), dist2-5, dist2));
         
         preSeg = segment1;
     }

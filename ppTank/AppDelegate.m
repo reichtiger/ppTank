@@ -35,6 +35,9 @@
 	[window_ center];
 	
 	CCScene *scene = [CCScene node];
+	[scene addChild:[GameLayer node]];
+    // here can add a control layer , this layer will not move with layer below of it ..
+    
 	[scene addChild:[testLayer node]];
 	
 	[director runWithScene:scene];
