@@ -214,9 +214,9 @@
     cpFloat preDist;
     
     int n = 0;
-    for (n = 0; n < num; n++) {
+    for (n = 0; n < 3; n++) {
         
-        if (n == 0) {
+        
             
             cpVect pos1 = points[n];
             cpVect pos2 = points[n+1];
@@ -234,8 +234,8 @@
             curBody = [self addSegment:parentLayer pos:posCur rotation:rotation group:n ];
             
             //pivotJointTrack = cpPivotJointNew2(bodyTank, curBody, anchorA, cpv(-dist/2, -trackRect.y/2));
-            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(-dist/2, -trackRect.y/2), point1_2_center, point1_2_center));
-            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(dist/2, -trackRect.y/2), point2_2_center, point2_2_center));
+            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(-dist/2, -trackRect.y/2), point1_2_center/2, point1_2_center/2));
+            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(dist/2, -trackRect.y/2), point2_2_center/2, point2_2_center/2));
             
             firstBody = curBody;
         }
@@ -243,7 +243,7 @@
         // prepare next
         preBody = curBody;
         preDist = dist;
-    }
+    
     
     // done
     return self;

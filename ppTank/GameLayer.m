@@ -659,7 +659,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         CCLOG(@"{ %2f, %2f },", trackVerts[a].x, trackVerts[a].y);
     }
     
-    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:4.0f bodyTank:tankBody anchorTank:ccp(0, 0)];
+    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:4.0f bodyTank:tankBody anchorTank:ccp(-40, 0)];
 }
 
 

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GameLayer.h"
+#import "testLayer.h"
 
 @implementation ppTankAppDelegate
 @synthesize window=window_, glView=glView_;
@@ -34,7 +35,7 @@
 	[window_ center];
 	
 	CCScene *scene = [CCScene node];
-	[scene addChild:[GameLayer node]];
+	[scene addChild:[testLayer node]];
 	
 	[director runWithScene:scene];
 }
