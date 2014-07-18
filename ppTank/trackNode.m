@@ -8,7 +8,7 @@
 
 #import "trackNode.h"
 
-#define         TRACK_SKIN
+//#define         TRACK_SKIN
 
 @implementation trackNode
 {
@@ -214,16 +214,14 @@
     cpFloat preDist;
     
     int n = 0;
-    for (n = 0; n < 3; n++) {
+    for (n = 0; n < num; n++) {
         
-        
-            
             cpVect pos1 = points[n];
             cpVect pos2 = points[n+1];
             
             dist = cpvdist(pos1, pos2);
-            cpFloat point1_2_center = cpvdist(pos1, anchorTank);
-            cpFloat point2_2_center = cpvdist(pos2, anchorTank);
+            cpFloat point1_2_center = cpvdist(pos1, cpBodyLocal2World(bodyTank, anchorTank));
+            cpFloat point2_2_center = cpvdist(pos2, cpBodyLocal2World(bodyTank, anchorTank));
             
             trackRect = cpv(dist, thickness);
             

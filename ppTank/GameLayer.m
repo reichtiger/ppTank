@@ -141,9 +141,9 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         
         
         // --------------  add track on it
-        //[self addTrack3];
+        [self addTrack3];
         
-        [ self addTrack2];
+        //[ self addTrack2];
         
         //[self addAntenna];
         [self addGun];
