@@ -187,8 +187,10 @@
                    thickness:(cpFloat)thickness
                     bodyTank:(cpBody*)bodyTank
                   anchorTank:(CGPoint)anchorTank
+                 anchorStart:(CGPoint)anchorStart
+                   anchorEnd:(CGPoint)anchorEnd
 {
-    return [[trackNode alloc] initWithPoints:space parentLayer:parentLayer num:num points:points thickness:thickness bodyTank:bodyTank anchorTank:anchorTank];
+    return [[trackNode alloc] initWithPoints:space parentLayer:parentLayer num:num points:points thickness:thickness bodyTank:bodyTank anchorTank:anchorTank anchorStart:anchorStart anchorEnd:anchorEnd];
 }
 
 - (id)initWithPoints:(cpSpace*)space
@@ -198,6 +200,8 @@
            thickness:(cpFloat)thickness
             bodyTank:(cpBody*)bodyTank
           anchorTank:(CGPoint)anchorTank
+         anchorStart:(CGPoint)anchorStart
+           anchorEnd:(CGPoint)anchorEnd
 {
     self = [super init];
     if (!self) return(nil);
@@ -206,42 +210,69 @@
     
     //   init vars
     cpVect posCur;
-    cpBody* firstBody;
     cpBody* preBody;
     cpBody* curBody = nil;
     
-    cpFloat dist;
-    cpFloat preDist;
+    cpFloat segLen;
+    cpFloat segLenPre;
+    cpVect anchorTank_w = cpBodyLocal2World(bodyTank, anchorTank);
     
     int n = 0;
-    for (n = 0; n < num; n++) {
+    for (n = 0; n < num+1; n++) {
         
-            cpVect pos1 = points[n];
-            cpVect pos2 = points[n+1];
+        cpVect point1 = points[n-1];
+        cpVect point2 = points[n];
+        segLen = cpvdist(point1, point2);
+        
+        if (n == 0) {
+            point1 = cpBodyLocal2World(bodyTank, anchorStart);
+            point2 = points[0];
+            segLen = cpvdist(point1, point2);
             
-            dist = cpvdist(pos1, pos2);
-            cpFloat point1_2_center = cpvdist(pos1, cpBodyLocal2World(bodyTank, anchorTank));
-            cpFloat point2_2_center = cpvdist(pos2, cpBodyLocal2World(bodyTank, anchorTank));
+        }
+        else if (n == num){
+            point1 = points[n-1];
+            point2 = cpBodyLocal2World(bodyTank, anchorEnd);
+            segLen = cpvdist(point1, point2);
             
-            trackRect = cpv(dist, thickness);
-            
-            cpFloat rotation = cpvtoangle(ccpSub(pos2, pos1));
-            cpVect angelVect = cpvforangle( rotation );
-            
-            posCur  = ccpAdd(ccpAdd(pos1, ccp(dist*angelVect.x/2, dist*angelVect.y/2)), ccp(0, 0));
-            curBody = [self addSegment:parentLayer pos:posCur rotation:rotation group:n ];
-            
-            //pivotJointTrack = cpPivotJointNew2(bodyTank, curBody, anchorA, cpv(-dist/2, -trackRect.y/2));
-            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(-dist/2, -trackRect.y/2), point1_2_center/2, point1_2_center/2));
-            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(dist/2, -trackRect.y/2), point2_2_center/2, point2_2_center/2));
-            
-            firstBody = curBody;
         }
         
-        // prepare next
+        
+        trackRect = cpv(segLen, thickness);
+        
+        cpFloat rotation = cpvtoangle(ccpSub(point2, point1));
+        cpVect angelVect = cpvforangle( rotation );
+        
+        posCur  = ccpAdd(ccpAdd(point1, ccp(segLen*angelVect.x/2, segLen*angelVect.y/2)), ccp(0, 0));
+        curBody = [self addSegment:parentLayer pos:posCur rotation:rotation group:1 ];
+        
+        cpFloat point1_2_center = cpvdist(cpv(posCur.x-segLen/2, posCur.y-thickness/2), anchorTank_w);
+        cpFloat point2_2_center = cpvdist(cpv(posCur.x+segLen/2, posCur.y-thickness/2), anchorTank_w);
+        
+        
+        if (n == 0) {
+            cpSpaceAddConstraint(_space, cpPivotJointNew2(bodyTank, curBody, anchorStart, cpv(-segLen/2, -trackRect.y/2)));
+        }
+        else if (n == num){
+            cpSpaceAddConstraint(_space, cpPivotJointNew2(preBody, curBody, cpv(segLenPre/2, -trackRect.y/2), cpv(-segLen/2, -trackRect.y/2)));
+            cpSpaceAddConstraint(_space, cpPivotJointNew2(curBody, bodyTank, cpv(segLen/2, -trackRect.y/2), anchorEnd));
+        }
+        else{
+            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(-segLen/2, -trackRect.y/2), point1_2_center-15, point1_2_center));
+            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(segLen/2, -trackRect.y/2), point2_2_center-6, point2_2_center));
+            
+            //cpSpaceAddConstraint(_space, cpPivotJointNew2(preBody, curBody, cpv(segLenPre/2, -trackRect.y/2), cpv(-segLen/2, -trackRect.y/2)));
+            
+            // test use groove joint
+            
+            cpSpaceAddConstraint(_space, cpGrooveJointNew(preBody, curBody, cpv(segLenPre/2, -trackRect.y/2), cpv(segLenPre/2-5, -trackRect.y/2), cpv(-segLen/2, -trackRect.y/2)));
+        }
+
+        
+        segLenPre = segLen;
         preBody = curBody;
-        preDist = dist;
-    
+        
+    }
     
     // done
     return self;

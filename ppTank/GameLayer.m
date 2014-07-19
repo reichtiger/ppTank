@@ -169,13 +169,13 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         
         // add boxes
         
-        [self addNewStone:CGPointMake(300, 70)];
-        [self addNewStone:CGPointMake(320, 70)];
-        [self addNewStone:CGPointMake(340, 70)];
-        [self addNewStone:CGPointMake(360, 70)];
-        [self addNewStone:CGPointMake(330, 80)];
-        [self addNewStone:CGPointMake(350, 80)];
-        [self addNewStone:CGPointMake(330, 90)];
+//        [self addNewStone:CGPointMake(400, 70)];
+//        [self addNewStone:CGPointMake(420, 70)];
+//        [self addNewStone:CGPointMake(440, 70)];
+//        [self addNewStone:CGPointMake(460, 70)];
+//        [self addNewStone:CGPointMake(430, 80)];
+//        [self addNewStone:CGPointMake(450, 80)];
+//        [self addNewStone:CGPointMake(430, 90)];
         
         
         
@@ -365,7 +365,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 - (void) assemble_tank
 {
     
-    cpVect tankPos = cpv(200, 75);
+    cpVect tankPos = cpv(260, 135);
     cpVect boxOffset = cpv(0, 0);
     // tank body create
     tankBody = [self addTankBody:_space pos:tankPos boxOffset:boxOffset];
@@ -416,8 +416,8 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     cpSpaceAddConstraint(_space, cpGrooveJointNew(tankBody, wheel7, cpv( baseXwheel+wheel_dist*6, anchorHeight), pos7_local, cpvzero));
     
     
-    cpFloat stiffness = 150.0f;
-    cpFloat restLen = 50.0f;
+    cpFloat stiffness = 70.0f;
+    cpFloat restLen = 30.0f;
     //cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel1, cpv( baseXwheel, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel2, cpv( baseXwheel+wheel_dist*1, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel3, cpv( baseXwheel+wheel_dist*2, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
@@ -634,7 +634,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     //cpFloat scale = 1;
     
     cpFloat firstPoint_x = -196;
-    cpFloat firstPoint_y = -75;
+    cpFloat firstPoint_y = -90;
     
     cpFloat segLen = 39;
     cpVect trackVerts[] = {
@@ -659,7 +659,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         CCLOG(@"{ %2f, %2f },", trackVerts[a].x, trackVerts[a].y);
     }
     
-    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:4.0f bodyTank:tankBody anchorTank:ccp(-40, 0)];
+    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:4.0f bodyTank:tankBody anchorTank:ccp(-40, -30) anchorStart:cpv(-156, -36) anchorEnd:cpv(103, -38)];
 }
 
 

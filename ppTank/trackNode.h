@@ -71,10 +71,12 @@ enum COLLISION_TYPE {
 + (id)connectWithCenterPoint:(cpSpace*)space
                  parentLayer:(CCLayer*)parentLayer
                          num:(int)num
-                       points:(cpVect*)points
-                    thickness:(cpFloat)thickness
-                     bodyTank:(cpBody*)bodyTank
-                      anchorTank:(CGPoint)anchorTank;
+                      points:(cpVect*)points
+                   thickness:(cpFloat)thickness
+                    bodyTank:(cpBody*)bodyTank
+                  anchorTank:(CGPoint)anchorTank
+                 anchorStart:(CGPoint)anchorStart
+                   anchorEnd:(CGPoint)anchorEnd;
 
 - (id)initWithPoints:(cpSpace*)space
          parentLayer:(CCLayer*)parentLayer
@@ -82,6 +84,8 @@ enum COLLISION_TYPE {
               points:(cpVect*)points
            thickness:(cpFloat)thickness
             bodyTank:(cpBody*)bodyTank
-          anchorTank:(CGPoint)anchorTank;
+          anchorTank:(CGPoint)anchorTank
+         anchorStart:(CGPoint)anchorStart
+           anchorEnd:(CGPoint)anchorEnd;
 
 @end
