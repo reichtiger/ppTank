@@ -373,9 +373,9 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     cpFloat wheel_mass = 2.0f;
     
     int anchorHeight = -46*tankScale;
-    int startWheel_y = -65*tankScale;
-    int baseXwheel = -175*tankScale;
-    int wheel_dist = 42.0f*tankScale;
+    int startWheel_y = -75*tankScale;
+    int baseXwheel = -155*tankScale;
+    int wheel_dist = 35.0f*tankScale;
     
     cpFloat radius = 16.0f*tankScale;
     
@@ -633,10 +633,10 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 {
     //cpFloat scale = 1;
     
-    cpFloat firstPoint_x = -196;
+    cpFloat firstPoint_x = -170;
     cpFloat firstPoint_y = -90;
     
-    cpFloat segLen = 39;
+    cpFloat segLen = 40;
     cpVect trackVerts[] = {
         
         { firstPoint_x + segLen*0, firstPoint_y },
@@ -650,7 +650,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         
     };
     
-    int numPoints = 8;
+    int numPoints = 7;
     
     for (int a = 0; a < numPoints; a++) {
         //trackVerts[a] = cpBodyWorld2Local(tankBody, trackVerts[a]);
@@ -659,7 +659,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         CCLOG(@"{ %2f, %2f },", trackVerts[a].x, trackVerts[a].y);
     }
     
-    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:4.0f bodyTank:tankBody anchorTank:ccp(-40, -30) anchorStart:cpv(-156, -36) anchorEnd:cpv(103, -38)];
+    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:6.0f bodyTank:tankBody anchorTank:ccp(-40, -30) anchorStart:cpv(-156, -36) anchorEnd:cpv(103, -38)];
 }
 
 
@@ -876,15 +876,15 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     cpShapeSetCollisionType(shape, 2);
 
     
-    CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"block2.png" capacity:1];
-    _spriteTexture = [parent texture];
-	
-	CCPhysicsSprite *sprite = [CCPhysicsSprite spriteWithTexture:_spriteTexture];
-	[parent addChild: sprite];
-	[sprite setCPBody:body];
-    sprite.scale = 1;
-    [self addChild:parent z:1 tag:kTagParentNode];
-    sprite.position = real_pos;
+//    CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"block2.png" capacity:1];
+//    _spriteTexture = [parent texture];
+//	
+//	CCPhysicsSprite *sprite = [CCPhysicsSprite spriteWithTexture:_spriteTexture];
+//	[parent addChild: sprite];
+//	[sprite setCPBody:body];
+//    sprite.scale = 1;
+//    [self addChild:parent z:1 tag:kTagParentNode];
+//    sprite.position = real_pos;
 
     
 }

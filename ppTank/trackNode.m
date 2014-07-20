@@ -217,8 +217,12 @@
     cpFloat segLenPre;
     cpVect anchorTank_w = cpBodyLocal2World(bodyTank, anchorTank);
     
+    cpFloat middle_offset = 3.5f;
+    
     int n = 0;
     for (n = 0; n < num+1; n++) {
+        int middle_offset2 = abs(middle_offset - n);
+        CCLOG(@"mid = %2d", middle_offset2);
         
         cpVect point1 = points[n-1];
         cpVect point2 = points[n];
@@ -251,15 +255,34 @@
         
         
         if (n == 0) {
-            cpSpaceAddConstraint(_space, cpPivotJointNew2(bodyTank, curBody, anchorStart, cpv(-segLen/2, -trackRect.y/2)));
+            //cpSpaceAddConstraint(_space, cpPivotJointNew2(bodyTank, curBody, anchorStart, cpv(-segLen/2, -trackRect.y/2)));
+            
+            cpSpaceAddConstraint(_space, cpGrooveJointNew(bodyTank, curBody, anchorStart, cpv(anchorStart.x+5, anchorStart.y-5), cpv(-segLen/2, -trackRect.y/2)));
         }
         else if (n == num){
             cpSpaceAddConstraint(_space, cpPivotJointNew2(preBody, curBody, cpv(segLenPre/2, -trackRect.y/2), cpv(-segLen/2, -trackRect.y/2)));
-            cpSpaceAddConstraint(_space, cpPivotJointNew2(curBody, bodyTank, cpv(segLen/2, -trackRect.y/2), anchorEnd));
+            //cpSpaceAddConstraint(_space, cpPivotJointNew2(curBody, bodyTank, cpv(segLen/2, -trackRect.y/2), anchorEnd));
+            
+            cpSpaceAddConstraint(_space, cpGrooveJointNew(bodyTank, curBody, anchorEnd, cpv(anchorEnd.x-5, anchorEnd.y-5), cpv(segLen/2, -trackRect.y/2)));
+            
+            // add a wheel on joint
+            cpFloat mass = 0.1f;
+            cpFloat radius = 5;
+            cpBody *bodyWheel = cpSpaceAddBody(space, cpBodyNew(mass, cpMomentForCircle(mass, 0.0f, radius, cpvzero)));
+            cpBodySetPos(bodyWheel, cpvadd(cpBodyLocal2World(curBody, cpv(-segLen/2, 0)), cpvzero));
+            
+            cpShape *shape = cpSpaceAddShape(space, cpCircleShapeNew(bodyWheel, radius, cpvzero));
+            cpShapeSetElasticity(shape, 0.0f);
+            cpShapeSetFriction(shape, 0.1f);
+            cpShapeSetLayers(shape, 1);
+            cpShapeSetCollisionType(shape, COLLISION_TYPE_TRACK);
+            
+            cpShapeSetGroup(shape, 1); // use a group to keep the car parts from colliding
+            cpSpaceAddConstraint(_space, cpPivotJointNew2(curBody, bodyWheel, cpv(-segLen/2, 0), cpvzero));
         }
         else{
-            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(-segLen/2, -trackRect.y/2), point1_2_center-15, point1_2_center));
-            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(segLen/2, -trackRect.y/2), point2_2_center-6, point2_2_center));
+            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(-segLen/2, -trackRect.y/2), point1_2_center-middle_offset2, point1_2_center));
+            cpSpaceAddConstraint(_space, cpSlideJointNew(bodyTank, curBody, anchorTank, cpv(segLen/2, -trackRect.y/2), point2_2_center-middle_offset2, point2_2_center));
             
             //cpSpaceAddConstraint(_space, cpPivotJointNew2(preBody, curBody, cpv(segLenPre/2, -trackRect.y/2), cpv(-segLen/2, -trackRect.y/2)));
             
