@@ -179,7 +179,8 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         
         
         
-        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"tank-bg.mp3"];
+        //[[SimpleAudioEngine sharedEngine] playEffect:@"tank-bg.mp3"];
 		//[self scheduleUpdate];
 	}
 	
@@ -636,7 +637,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     cpFloat firstPoint_x = -170;
     cpFloat firstPoint_y = -90;
     
-    cpFloat segLen = 40;
+    cpFloat segLen = 45;
     cpVect trackVerts[] = {
         
         { firstPoint_x + segLen*0, firstPoint_y },
@@ -646,8 +647,6 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         { firstPoint_x + segLen*4, firstPoint_y },
         { firstPoint_x + segLen*5, firstPoint_y },
         { firstPoint_x + segLen*6, firstPoint_y },
-        { firstPoint_x + segLen*7, firstPoint_y },
-        
     };
     
     int numPoints = 7;
@@ -659,7 +658,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         CCLOG(@"{ %2f, %2f },", trackVerts[a].x, trackVerts[a].y);
     }
     
-    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:6.0f bodyTank:tankBody anchorTank:ccp(-40, -30) anchorStart:cpv(-156, -36) anchorEnd:cpv(103, -38)];
+    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:5.0f bodyTank:tankBody anchorTank:ccp(-40, -30) anchorStart:cpv(-156, -36) anchorEnd:cpv(103, -38)];
 }
 
 
@@ -897,7 +896,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     CCLOG(@"{ %2f, %2f },", inbodyPos.x, inbodyPos.y);
     
     [self addNewStone:location];
-	[self addNewStone:ccp(location.x+2, location.y+5)];
+	[self addNewStone:ccp(location.x+7, location.y+5)];
 	
 	return YES;
 }

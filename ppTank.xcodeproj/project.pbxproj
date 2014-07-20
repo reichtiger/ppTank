@@ -13,6 +13,7 @@
 		C925C6881977C6EB00537F50 /* rollerwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = C925C6871977C6EB00537F50 /* rollerwheel.png */; };
 		C925C68B1977C85200537F50 /* gunbarrel.png in Resources */ = {isa = PBXBuildFile; fileRef = C925C6891977C85200537F50 /* gunbarrel.png */; };
 		C925C68C1977C85200537F50 /* tracksegment.png in Resources */ = {isa = PBXBuildFile; fileRef = C925C68A1977C85200537F50 /* tracksegment.png */; };
+		C95FF4B3197B9BEB001B8B6A /* tank-bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C95FF4B2197B9BEB001B8B6A /* tank-bg.mp3 */; };
 		C989E13E196E22FF00EF7502 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C989E13D196E22FF00EF7502 /* QuartzCore.framework */; };
 		C989E140196E22FF00EF7502 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C989E13F196E22FF00EF7502 /* OpenGL.framework */; };
 		C989E142196E22FF00EF7502 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C989E141196E22FF00EF7502 /* OpenAL.framework */; };
@@ -186,6 +187,7 @@
 		C925C6871977C6EB00537F50 /* rollerwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rollerwheel.png; sourceTree = "<group>"; };
 		C925C6891977C85200537F50 /* gunbarrel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gunbarrel.png; sourceTree = "<group>"; };
 		C925C68A1977C85200537F50 /* tracksegment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tracksegment.png; sourceTree = "<group>"; };
+		C95FF4B2197B9BEB001B8B6A /* tank-bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "tank-bg.mp3"; sourceTree = "<group>"; };
 		C989E13A196E22FF00EF7502 /* ppTank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ppTank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C989E13D196E22FF00EF7502 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C989E13F196E22FF00EF7502 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -571,6 +573,7 @@
 		C989E149196E22FF00EF7502 /* ppTank */ = {
 			isa = PBXGroup;
 			children = (
+				C95FF4B2197B9BEB001B8B6A /* tank-bg.mp3 */,
 				C9BB3A831978C60800309424 /* readme.txt */,
 				C925C67C19779AFE00537F50 /* HelloWorldLayer.h */,
 				C925C67D19779AFE00537F50 /* HelloWorldLayer.m */,
@@ -1157,6 +1160,7 @@
 				C989E345196E327A00EF7502 /* wheel.png in Resources */,
 				C925C6881977C6EB00537F50 /* rollerwheel.png in Resources */,
 				C989E309196E230100EF7502 /* ChangeLog in Resources */,
+				C95FF4B3197B9BEB001B8B6A /* tank-bg.mp3 in Resources */,
 				C9978CD1196FC39F0063FD68 /* 背景-1.png in Resources */,
 				C989E341196E327A00EF7502 /* gun.png in Resources */,
 				C9978CD2196FC39F0063FD68 /* 背景第二层1.png in Resources */,

@@ -221,7 +221,7 @@
     
     int n = 0;
     for (n = 0; n < num+1; n++) {
-        int middle_offset2 = abs(middle_offset - n);
+        int middle_offset2 = abs(middle_offset - n) + 2;
         CCLOG(@"mid = %2d", middle_offset2);
         
         cpVect point1 = points[n-1];
