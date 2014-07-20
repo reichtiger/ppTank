@@ -130,7 +130,14 @@ DrawConstraint(cpConstraint *constraint, CCDrawNode *renderer)
 		[renderer drawDot:c radius:3.0 color:CONSTRAINT_COLOR];
 		[renderer drawSegmentFrom:a to:b radius:1.0 color:CONSTRAINT_COLOR];
 	} else if(klass == cpDampedSpringGetClass()){
-		// TODO
+		cpDampedSpring *joint = (cpDampedSpring *)constraint;
+        
+		cpVect a = cpBodyLocal2World(body_a, joint->anchr1);
+		cpVect b = cpBodyLocal2World(body_b, joint->anchr2);
+        
+		[renderer drawDot:a radius:3.0 color:CONSTRAINT_COLOR];
+		[renderer drawDot:b radius:3.0 color:CONSTRAINT_COLOR];
+        [renderer drawSegmentFrom:a to:b radius:1.0 color:CONSTRAINT_COLOR];
 	} else {
 //		printf("Cannot draw constraint\n");
 	}

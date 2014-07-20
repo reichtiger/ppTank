@@ -526,7 +526,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 	cpShapeSetGroup(gunShape, 2); // use a group to keep the car parts from colliding
     
     cpSpaceAddConstraint(_space, cpPivotJointNew2(gun_gear, gunBody, cpv(0, 0), cpv(-120*tankScale, 0)));
-    //cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, gunBody, cpv(75*tankScale, 15*tankScale), cpv(0, 0), 35.0f*tankScale, 100.0f*tankScale, 20.0f*tankScale));
+    cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, gunBody, cpv(155*tankScale, -10*tankScale), cpv(0, 0), 35.0f*tankScale, 100.0f*tankScale, 20.0f*tankScale));
     gunGearJoint = cpRotaryLimitJointNew(gun_gear, gunBody, 0.0f, 0.0f);
     cpSpaceAddConstraint(_space, gunGearJoint);
     
