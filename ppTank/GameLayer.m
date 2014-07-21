@@ -76,6 +76,13 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     
     CGPoint* newSpeed = (CGPoint*)ignore;
     
+    CCLOG(@"speed=%2f, %2f", newSpeed->x, newSpeed->y);
+    
+    if (newSpeed->x > 0.1f || newSpeed->x < -0.1f) {
+        newSpeed->y += 3;
+        
+    }
+    
     cpArbiterSetSurfaceVelocity(arb, *newSpeed);
     cpArbiterSetFriction(arb, 7.6f);
     
@@ -272,7 +279,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 
 -(cpBody *) addTankBody:(cpSpace *)space pos:(cpVect)pos boxOffset:(cpVect)boxOffset
 {
-	cpFloat mass = 5.0f;
+	cpFloat mass = 25.0f;
 	
     int body_track_pointsNum = 6;
     cpVect verts[] = {
@@ -417,15 +424,15 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     cpSpaceAddConstraint(_space, cpGrooveJointNew(tankBody, wheel7, cpv( baseXwheel+wheel_dist*6, anchorHeight), pos7_local, cpvzero));
     
     
-    cpFloat stiffness = 70.0f;
+    cpFloat stiffness = 170.0f;
     cpFloat restLen = 30.0f;
-    //cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel1, cpv( baseXwheel, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
+    cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel1, cpv( baseXwheel, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel2, cpv( baseXwheel+wheel_dist*1, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel3, cpv( baseXwheel+wheel_dist*2, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel4, cpv( baseXwheel+wheel_dist*3, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel5, cpv( baseXwheel+wheel_dist*4, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel6, cpv( baseXwheel+wheel_dist*5, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
-    //cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel7, cpv( baseXwheel+wheel_dist*6, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
+    cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel7, cpv( baseXwheel+wheel_dist*6, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     
     
     // ====== add gears left right
@@ -903,7 +910,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 
 -(BOOL)ccKeyDown:(NSEvent *)event
 {
-    CCLOG(@"press %d", event.keyCode);
+    //CCLOG(@"press %d", event.keyCode);
     switch (event.keyCode) {
         case 49: // char d
             [self fire];
@@ -932,7 +939,6 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 
 -(BOOL)ccKeyUp:(NSEvent *)event
 {
-    CCLOG(@"up %d", event.keyCode);
     switch (event.keyCode) {
         case 0:
             [self stopSpeed:tankDirection];
