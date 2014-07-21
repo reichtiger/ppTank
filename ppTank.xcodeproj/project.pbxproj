@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A68AED0F196EDAFC00396E35 /* trackNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A68AED0E196EDAFC00396E35 /* trackNode.m */; };
+		C9241024197CC6BA0092D7E3 /* roadblocks.m in Sources */ = {isa = PBXBuildFile; fileRef = C9241023197CC6BA0092D7E3 /* roadblocks.m */; };
 		C925C67E19779AFE00537F50 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C925C67D19779AFE00537F50 /* HelloWorldLayer.m */; };
 		C925C6861977AADB00537F50 /* tankbody.png in Resources */ = {isa = PBXBuildFile; fileRef = C925C6851977AADB00537F50 /* tankbody.png */; };
 		C925C6881977C6EB00537F50 /* rollerwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = C925C6871977C6EB00537F50 /* rollerwheel.png */; };
@@ -181,6 +182,8 @@
 /* Begin PBXFileReference section */
 		A68AED0D196EDAFC00396E35 /* trackNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trackNode.h; sourceTree = "<group>"; };
 		A68AED0E196EDAFC00396E35 /* trackNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = trackNode.m; sourceTree = "<group>"; };
+		C9241022197CC6BA0092D7E3 /* roadblocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = roadblocks.h; sourceTree = "<group>"; };
+		C9241023197CC6BA0092D7E3 /* roadblocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = roadblocks.m; sourceTree = "<group>"; };
 		C925C67C19779AFE00537F50 /* HelloWorldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
 		C925C67D19779AFE00537F50 /* HelloWorldLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		C925C6851977AADB00537F50 /* tankbody.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tankbody.png; sourceTree = "<group>"; };
@@ -584,6 +587,8 @@
 				A68AED0E196EDAFC00396E35 /* trackNode.m */,
 				C989E32C196E230100EF7502 /* GameLayer.h */,
 				C989E32D196E230100EF7502 /* GameLayer.m */,
+				C9241022197CC6BA0092D7E3 /* roadblocks.h */,
+				C9241023197CC6BA0092D7E3 /* roadblocks.m */,
 				C989E14A196E22FF00EF7502 /* Resources */,
 				C989E155196E22FF00EF7502 /* libs */,
 				C989E325196E230100EF7502 /* Supporting Files */,
@@ -1237,6 +1242,7 @@
 				C989E1FE196E230000EF7502 /* CCShaderCache.m in Sources */,
 				C989E204196E230000EF7502 /* CCSprite.m in Sources */,
 				C989E2C0196E230000EF7502 /* cpBBTree.c in Sources */,
+				C9241024197CC6BA0092D7E3 /* roadblocks.m in Sources */,
 				C989E31F196E230100EF7502 /* vec2.c in Sources */,
 				C989E1AB196E22FF00EF7502 /* CCGrabber.m in Sources */,
 				C989E23F196E230000EF7502 /* CCES2Renderer.m in Sources */,

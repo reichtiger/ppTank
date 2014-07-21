@@ -76,9 +76,9 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     
     CGPoint* newSpeed = (CGPoint*)ignore;
     
-    CCLOG(@"speed=%2f, %2f", newSpeed->x, newSpeed->y);
+    //CCLOG(@"speed=%2f, %2f", newSpeed->x, newSpeed->y);
     
-    if (newSpeed->x > 0.1f || newSpeed->x < -0.1f) {
+    if (newSpeed->x > 15.1f || newSpeed->x < -15.1f) {
         newSpeed->y += 3;
         
     }
@@ -159,9 +159,6 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         [self addStaticWheel:cpv(470, 60) radius:16 friction:1.7f motorSpeed:2.0f];
         [self addStaticWheel:cpv(530, 65) radius:11 friction:1.7f motorSpeed:-2.0f];
         [self addStaticWheel:cpv(590, 70) radius:13 friction:1.7f motorSpeed:2.0f];
-        [self addStaticWheel:cpv(660, 60) radius:11 friction:1.7f motorSpeed:-2.0f];
-        [self addStaticWheel:cpv(720, 30) radius:12 friction:1.7f motorSpeed:2.0f];
-        [self addStaticWheel:cpv(790, 60) radius:14 friction:1.7f motorSpeed:-2.0f];
         
         
         cpSpaceAddCollisionHandler(_space, COLLISION_TYPE_BULLET, COLLISION_TYPE_STONE, NULL, preSolveFire, NULL, NULL, NULL);
@@ -176,9 +173,9 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         
         // add boxes
         
-//        [self addNewStone:CGPointMake(400, 70)];
-//        [self addNewStone:CGPointMake(420, 70)];
-//        [self addNewStone:CGPointMake(440, 70)];
+        [self addNewStone:CGPointMake(400, 70)];
+        [self addNewStone:CGPointMake(420, 70)];
+        [self addNewStone:CGPointMake(440, 70)];
 //        [self addNewStone:CGPointMake(460, 70)];
 //        [self addNewStone:CGPointMake(430, 80)];
 //        [self addNewStone:CGPointMake(450, 80)];
@@ -187,6 +184,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         
         
         [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"tank-bg.mp3"];
+        
         //[[SimpleAudioEngine sharedEngine] playEffect:@"tank-bg.mp3"];
 		//[self scheduleUpdate];
 	}
@@ -382,7 +380,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     
     int anchorHeight = -46*tankScale;
     int startWheel_y = -75*tankScale;
-    int baseXwheel = -155*tankScale;
+    int baseXwheel = -135*tankScale;
     int wheel_dist = 35.0f*tankScale;
     
     cpFloat radius = 16.0f*tankScale;
@@ -665,7 +663,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
         CCLOG(@"{ %2f, %2f },", trackVerts[a].x, trackVerts[a].y);
     }
     
-    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:5.0f bodyTank:tankBody anchorTank:ccp(-40, -30) anchorStart:cpv(-156, -36) anchorEnd:cpv(103, -38)];
+    track2 = [trackNode connectWithCenterPoint:_space parentLayer:self num:numPoints points:trackVerts thickness:5.0f bodyTank:tankBody anchorTank:ccp(-40, -30) anchorStart:cpv(-156, -36) anchorEnd:cpv(113, -30)];
 }
 
 
@@ -820,10 +818,10 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     
     currentPage = (int)(p.x/self.contentSize.width);
     
-    if ( (p.x >= self.contentSize.width/2) && (p.x < self.contentSize.width * (space_pages-1)+self.contentSize.width/2) ) {
+    if ( (p.x >= self.contentSize.width/3) && (p.x < self.contentSize.width * (space_pages-1)+self.contentSize.width/3) ) {
         CGPoint s = self.position;
         
-        offsetScreenX = CGPointMake(-(p.x - self.contentSize.width/2), s.y);
+        offsetScreenX = CGPointMake(-(p.x - self.contentSize.width/3), s.y);
         [self setPosition:offsetScreenX];
     }
 }

@@ -13,11 +13,12 @@
 #import "chipmunk.h"
 
 
-//#define             BODY_SKIN
-//#define             WHEEL_SKIN
-//#define             GUN_SKIN
+#define             BODY_SKIN
+#define             WHEEL_SKIN
+#define             GUN_SKIN
 
 #import "trackNode.h"
+#import "roadblocks.h"
 
 @interface GameLayer : CCLayerColor
 {
