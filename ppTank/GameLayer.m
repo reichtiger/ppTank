@@ -79,7 +79,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     //CCLOG(@"speed=%2f, %2f", newSpeed->x, newSpeed->y);
     
     if (newSpeed->x > 15.1f || newSpeed->x < -15.1f) {
-        newSpeed->y += 3;
+        //newSpeed->y += 1;
         
     }
     
@@ -124,7 +124,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 		self.mouseEnabled = YES;
         [self setKeyboardEnabled:YES];
 #endif
-		space_pages = 13;
+		space_pages = 7;
         currentPage = 0;
         
         CGSize s = [[CCDirector sharedDirector] winSize];
@@ -181,9 +181,9 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 //        [self addNewStone:CGPointMake(450, 80)];
 //        [self addNewStone:CGPointMake(430, 90)];
         
+        [roadblocks blockhouseAtPos:_space pos:cpv(800, 300) withWarrior:YES];
         
-        
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"tank-bg.mp3"];
+        //[[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"tank-bg.mp3"];
         
         //[[SimpleAudioEngine sharedEngine] playEffect:@"tank-bg.mp3"];
 		//[self scheduleUpdate];
@@ -218,7 +218,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     cpSpaceAddStaticShape(_space, _walls[0] );
     cpShapeSetCollisionType(_walls[0], COLLISION_TYPE_OUTLINE);
 	// top
-	_walls[1] = cpSegmentShapeNew( _space->staticBody, cpv(0,s.height), cpv(s.width,s.height), 0.0f);
+	_walls[1] = cpSegmentShapeNew( _space->staticBody, cpv(0,s.height), cpv(s.width,s.height), 5.0f);
 	cpShapeSetElasticity( _walls[1], 0.6f );
     cpShapeSetFriction( _walls[1], 0.0f );
     cpSpaceAddStaticShape(_space, _walls[1] );
@@ -228,13 +228,11 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     cpShapeSetFriction( _walls[2], 0.0f );
     cpSpaceAddStaticShape(_space, _walls[2] );
 	// right
-    
 	_walls[3] = cpSegmentShapeNew( _space->staticBody, cpv(s.width*space_pages,0), cpv(s.width*space_pages, s.height), 6.0f);
     cpShapeSetElasticity( _walls[3], 0.6f );
     cpShapeSetFriction( _walls[3], 0.0f );
     cpSpaceAddStaticShape(_space, _walls[3] );
     
-	
 	_debugLayer = [CCPhysicsDebugNode debugNodeForCPSpace:_space];
 	_debugLayer.visible = YES;
 	[self addChild:_debugLayer z:0];
@@ -242,7 +240,50 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 
 - (void) addGround
 {
+    //return;
+    cpVect ground_verts[] = {
+        { 39.789062, 28.453125 },
+        { 118.218750, 40.226562 },
+        { 262.863281, 49.179688 },
+        { 354.980469, 28.714844 },
+        { 438.750000, 40.531250 },
+        
+        { 565.277344, 37.402344 },
+        { 646.226562, 68.515625 },
+        { 697.847656, 112.578125 },
+        { 779.015625, 174.191406 },
+        { 886.296875, 149.859375 },
+        
+        { 963.421875, 107.496094 },
+        { 1063.531250, 86.640625 },
+        { 1134.660156, 112.363281 },
+        { 1204.878906, 129.742188 },
+        { 1261.492188, 95.675781 },
+        { 1324.585938, 97.761719 },
+        
+        { 1348.222656, 138.085938 },
+        { 1414.097656, 184.230469 },
+        { 1490.093750, 229.375000 },
+        { 1571.042969, 269.308594 },
+        { 1651.558594, 233.851562 },
+        { 1720.644531, 200.523438 },
+        
+        { 1771.046875, 130.656250 },
+        { 1906.375000, 59.257812 },
+        { 2306.375000, 39.257812 },
+        { 2606.375000, 19.257812 },
+        
+    };
     
+    for (int a = 0; a < 24; a++) {
+        
+        cpShape *ground = cpSegmentShapeNew(_space->staticBody, ground_verts[a], ground_verts[a+1], 6);
+        cpShapeSetFriction(ground, 1);
+        cpSpaceAddStaticShape(_space, ground);
+        cpShapeSetCollisionType(ground, COLLISION_TYPE_OUTLINE);
+    }
+    
+	
 }
 
 -(cpBody *) addWheel:(cpSpace *)space mass:(cpFloat)mass radius:(cpFloat)radius angel:(cpFloat)angel pos:(cpVect )pos  boxOffset:(cpVect )boxOffset scale:(cpFloat)scale;
@@ -858,7 +899,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     
     CGPoint real_pos = CGPointMake(-(offsetScreenX.x) + pos.x , pos.y);
     
-    cpFloat scale = 0.9;
+    cpFloat scale = 1.0f;
     
 	int num = 4;
 	cpVect verts[] = {
@@ -898,7 +939,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
 	CGPoint location = [(CCDirectorMac*)[CCDirector sharedDirector] convertEventToGL:event];
 
     cpVect inbodyPos = cpBodyWorld2Local(tankBody, location);
-    CCLOG(@"{ %2f, %2f },", inbodyPos.x, inbodyPos.y);
+    CCLOG(@"{ %2f, %2f },", location.x, location.y);
     
     [self addNewStone:location];
 	[self addNewStone:ccp(location.x+7, location.y+5)];
