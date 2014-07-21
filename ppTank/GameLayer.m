@@ -277,7 +277,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     
     for (int a = 0; a < 24; a++) {
         
-        cpShape *ground = cpSegmentShapeNew(_space->staticBody, ground_verts[a], ground_verts[a+1], 6);
+        cpShape *ground = cpSegmentShapeNew(_space->staticBody, ground_verts[a], ground_verts[a+1], 4);
         cpShapeSetFriction(ground, 1);
         cpSpaceAddStaticShape(_space, ground);
         cpShapeSetCollisionType(ground, COLLISION_TYPE_OUTLINE);
@@ -463,7 +463,7 @@ preSolveTankMove(cpArbiter *arb, cpSpace *space, void *ignore)
     cpSpaceAddConstraint(_space, cpGrooveJointNew(tankBody, wheel7, cpv( baseXwheel+wheel_dist*6, anchorHeight), pos7_local, cpvzero));
     
     
-    cpFloat stiffness = 170.0f;
+    cpFloat stiffness = 90.0f;
     cpFloat restLen = 30.0f;
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel1, cpv( baseXwheel, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
     cpSpaceAddConstraint(_space, cpDampedSpringNew(tankBody, wheel2, cpv( baseXwheel+wheel_dist*1, anchorHeight), cpvzero, restLen, stiffness, 10.0f));
